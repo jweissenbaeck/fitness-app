@@ -1,12 +1,13 @@
+import { router } from 'expo-router';
 import { useState } from 'react';
 import {
-    Alert,
-    KeyboardAvoidingView,
-    Platform,
-    Pressable,
-    StyleSheet,
-    TextInput,
-    View,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  StyleSheet,
+  TextInput,
+  View,
 } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
@@ -120,6 +121,15 @@ export default function RegisterScreen() {
               {loading ? 'Registrieren...' : 'Registrieren'}
             </ThemedText>
           </Pressable>
+
+          <Pressable
+            style={styles.loginButton}
+            onPress={() => router.push('/login')}
+          >
+            <ThemedText style={styles.loginText}>
+              Du hast bereits ein Konto? Einloggen
+            </ThemedText>
+          </Pressable>
         </View>
       </ThemedView>
     </KeyboardAvoidingView>
@@ -174,6 +184,14 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 16,
+    fontWeight: '600',
+  },
+  loginButton: {
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  loginText: {
+    fontSize: 14,
     fontWeight: '600',
   },
 });

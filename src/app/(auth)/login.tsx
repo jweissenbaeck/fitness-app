@@ -1,12 +1,13 @@
+import { router } from 'expo-router';
 import { useState } from 'react';
 import {
-    Alert,
-    KeyboardAvoidingView,
-    Platform,
-    Pressable,
-    StyleSheet,
-    TextInput,
-    View,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  StyleSheet,
+  TextInput,
+  View,
 } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
@@ -44,9 +45,8 @@ export default function LoginScreen() {
       return;
     }
 
-    // Wenn wir hier ankommen, war der Login erfolgreich.
-    // Die eigentliche Weiterleitung zur Haupt-App bauen wir
-    // im nächsten Schritt über Expo Router ein.
+    // Wenn der Login erfolgreich war,
+    // kümmert sich das RootLayout um die Weiterleitung.
     Alert.alert('Erfolgreich', 'Du wurdest erfolgreich eingeloggt.');
   }
 
@@ -94,6 +94,15 @@ export default function LoginScreen() {
           >
             <ThemedText style={styles.buttonText}>
               {loading ? 'Einloggen...' : 'Einloggen'}
+            </ThemedText>
+          </Pressable>
+
+          <Pressable
+            style={styles.registerButton}
+            onPress={() => router.push('/register')}
+          >
+            <ThemedText style={styles.registerText}>
+              Noch kein Konto? Registrieren
             </ThemedText>
           </Pressable>
         </View>
@@ -150,6 +159,14 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 16,
+    fontWeight: '600',
+  },
+  registerButton: {
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  registerText: {
+    fontSize: 14,
     fontWeight: '600',
   },
 });
